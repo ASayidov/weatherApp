@@ -32,3 +32,9 @@ body {
   background: rgba(0, 0, 0, 0.5);
   top: 0;
 }
+
+.copyright {
+  top: 450px;
+  text-align: center;
+  position: relative;
+}
