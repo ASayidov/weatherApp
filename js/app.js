@@ -4,12 +4,20 @@ const details = document.getElementById('details')
 const weatherIcon = document.getElementById('weather-icon')
 const overlay = document.getElementById('overlay')
 const input = document.getElementById('city')
+const incor = document.getElementById('incor')
 
+//loader
+function loader(state) {
+
+  if (state) {
+    overlay.classList.remove('d-none')
+  } else overlay.classList.add('d-none')
+
+}
 
 //update ui
 
 const updateUI = (weather) => {
-  // console.log(weather);
   details.innerHTML = `
   <h5 class="mb-3">${weather.name}, ${weather.sys.country}</h5>
           <p class="mb-3">${weather.weather[0].main}</p>
@@ -24,6 +32,17 @@ const updateUI = (weather) => {
   https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`
 }
 
+//incorrect city name
+const incorrect = (params) => {
+  incor.textContent = params;
+  overlay.classList.add('d-none')
+}
+
+const inc = () => {
+  setTimeout(incorrect, 2500)
+}
+
+
 //get location
 changeLocation.addEventListener('submit', (e) => {
   e.preventDefault()
@@ -31,6 +50,8 @@ changeLocation.addEventListener('submit', (e) => {
   changeLocation.reset()
   getData(cityName).then((data) => {
     updateUI(data)
+  }).catch((value) => {
+    incorrect(value.message)
   })
-
+  inc()
 })

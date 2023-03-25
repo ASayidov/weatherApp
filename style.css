@@ -34,7 +34,12 @@ body {
 }
 
 .copyright {
-  top: 450px;
+  top: 10px;
   text-align: center;
   position: relative;
+  margin-bottom: 2rem;
+}
+
+#incor {
+  color: red;
 }
