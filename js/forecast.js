@@ -3,9 +3,10 @@ let cityName = 'Uzbekistan';
 
 let API = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`;
 
-const getData = async (resurs) => {
-
-  const request = await fetch(resurs);
+const getData = async (city) => {
+  const base = 'https://api.openweathermap.org/data/2.5/weather';
+  const query = `?q=${city}&units=metric&appid=${apiKey}`
+  const request = await fetch(base + query);
   if (request.status != 200) {
     throw new Error('Xatolik yuz berdi')
   }
@@ -14,6 +15,6 @@ const getData = async (resurs) => {
   return response
 }
 
-getData(API).then((data) => {
+getData(cityName).then((data) => {
   console.log(data);
 }).catch((err) => { console.log(err.message) })
